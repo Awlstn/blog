@@ -16,4 +16,5 @@ jobs:
       
       - uses: actions/upload-pages-artifact@v3  # 빌드 결과물을 업로드
         with: 
+          name: build-artifact # 아티팩트 이름
           path: "./dist"  # 업로드할 디렉토리 경로 (위 빌드 결과물 위치)
