@@ -1,15 +1,17 @@
-name: CI  # 워크플로우 이름 (CI = Continuous Integration)
+name: Deploy to GitHub Pages
 
 on:
-  release:
-    types: [published]
-    
+  push:
+    tags: # 태그가 푸시될 때만 실행
+      - "v*.*.*"
+
+permissions:
+  contents: write # 레포지토리 콘텐츠에 대한 쓰기 권한
+  actions: read # 액션에 대한 읽기 권한
+  pull-requests: write
+
 jobs:
-  deploy:  # 두 번째 Job: 실제 GitHub Pages 배포
-    permissions:
-      contents: write # 레포지토리 콘텐츠에 대한 쓰기 권한
-      actions: read # 액션에 대한 읽기 권한
-      pull-requests: write
+  deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
