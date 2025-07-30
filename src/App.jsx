@@ -19,7 +19,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          {count} 번을 클릭했어요!!!.
+          {count} 번을 클릭했어요!!! 브랜치 모드로 변경
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
