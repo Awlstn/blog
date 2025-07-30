@@ -1,30 +1,15 @@
-name: Vite Build  # 워크플로우 이름 (CI = Continuous Integration)
+name: CI  # 워크플로우 이름 (CI = Continuous Integration)
 
 on:
-  push:
-    branches: [main]  # main 브랜치에 push 될 때 워크플로우 실행
-
+  release:
+    types: [published]
+    
 jobs:
-  build:  # 첫 번째 Job: build 작업
-    runs-on: ubuntu-latest  # GitHub에서 제공하는 최신 Ubuntu 환경에서 실행
-    steps:
-      - uses: actions/checkout@v4  # 현재 리포지토리의 코드를 체크아웃 (clone)
-      
-      - run: npm ci  # 의존성 설치 (package-lock.json 기반, 빠르고 안정적)
-      
-      - run: npm run build  # 빌드 스크립트 실행 (보통 dist 폴더 생성됨)
-      
-      - uses: actions/configure-pages@v5  # GitHub Pages 배포를 위한 설정 수행
-      
-      - uses: actions/upload-pages-artifact@v3  # 빌드 결과물을 업로드
-        with: 
-          path: "./dist"  # 업로드할 디렉토리 경로 (위 빌드 결과물 위치)
-
   deploy:  # 두 번째 Job: 실제 GitHub Pages 배포
-    needs: build  # build Job이 완료된 후 실행됨
     permissions:
-      pages: write  # GitHub Pages에 쓸 권한 부여
-      id-token: write  # OpenID Connect 토큰 발급 권한 부여 (보안 인증용)
+      contents: write # 레포지토리 콘텐츠에 대한 쓰기 권한
+      actions: read # 액션에 대한 읽기 권한
+      pull-requests: write
     environment:
       name: github-pages  # 배포 환경 이름
       url: ${{ steps.deployment.outputs.page_url }}  # 배포 후 페이지 URL 출력
