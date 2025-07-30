@@ -14,7 +14,8 @@ jobs:
       
       - uses: actions/configure-pages@v5  # GitHub Pages 배포를 위한 설정 수행
       
-      - uses: actions/upload-pages-artifact@v3  # 빌드 결과물을 업로드
-        with: 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4 # 아티팩트를 업로드하는 액션
+        with:
           name: build-artifact # 아티팩트 이름
-          path: "./dist"  # 업로드할 디렉토리 경로 (위 빌드 결과물 위치)
+          path: dist
