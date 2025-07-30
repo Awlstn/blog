@@ -1,0 +1,19 @@
+name: Vite Build
+on:
+  push:
+    branches: [main]
+jobs:
+  build:  # 첫 번째 Job: build 작업
+    runs-on: ubuntu-latest  # GitHub에서 제공하는 최신 Ubuntu 환경에서 실행
+    steps:
+      - uses: actions/checkout@v4  # 현재 리포지토리의 코드를 체크아웃 (clone)
+      
+      - run: npm ci  # 의존성 설치 (package-lock.json 기반, 빠르고 안정적)
+      
+      - run: npm run build  # 빌드 스크립트 실행 (보통 dist 폴더 생성됨)
+      
+      - uses: actions/configure-pages@v5  # GitHub Pages 배포를 위한 설정 수행
+      
+      - uses: actions/upload-pages-artifact@v3  # 빌드 결과물을 업로드
+        with: 
+          path: "./dist"  # 업로드할 디렉토리 경로 (위 빌드 결과물 위치)
