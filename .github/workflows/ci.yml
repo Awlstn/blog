@@ -1,4 +1,4 @@
-name: CI  # 워크플로우 이름 (CI = Continuous Integration)
+name: Vite Build  # 워크플로우 이름 (CI = Continuous Integration)
 
 on:
   push:
