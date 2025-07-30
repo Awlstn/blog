@@ -1,8 +1,7 @@
 name: CI  # 워크플로우 이름 (CI = Continuous Integration)
 
 on:
-  push:
-    branches: [main]  # main 브랜치에 push 될 때 워크플로우 실행
+  pull_request:
 
 jobs:
   build:  # 첫 번째 Job: build 작업
