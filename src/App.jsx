@@ -19,7 +19,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          {count} 번 클릭 - 수정zz
+          {count} 번 클릭 - 수정3
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
